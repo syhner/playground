@@ -7,3 +7,24 @@ settings:
 importers:
 
   .: {}
+
+  packages/backend:
+    dependencies:
+      core:
+        specifier: workspace:*
+        version: link:../core
+      hono:
+        specifier: ^4.6.12
+        version: 4.6.12
+
+  packages/core: {}
+
+packages:
+
+  hono@4.6.12:
+    resolution: {integrity: sha512-eHtf4kSDNw6VVrdbd5IQi16r22m3s7mWPLd7xOMhg1a/Yyb1A0qpUFq8xYMX4FMuDe1nTKeMX5rTx7Nmw+a+Ag==}
+    engines: {node: '>=16.9.0'}
+
+snapshots:
+
+  hono@4.6.12: {}
