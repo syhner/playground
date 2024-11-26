@@ -1,16 +1,17 @@
 import { Hono } from "hono";
 import { Math } from "core";
+import { handle } from "hono/aws-lambda";
 
-const app = new Hono();
+const api = new Hono();
 
-app.get("/", (c) => {
+api.get("/", (c) => {
 	return c.text("Hello Hono!");
 });
 
-app.get("/add/:a/:b", async (c) => {
+api.get("/add/:a/:b", async (c) => {
 	const a = parseInt(c.req.param("a"));
 	const b = parseInt(c.req.param("b"));
 	return c.text(Math.add(a, b).toString());
 });
 
-export default app;
+export const handler = handle(api);

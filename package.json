@@ -1,4 +1,12 @@
 {
 	"name": "saas-starter",
-	"scripts": {}
+	"scripts": {
+		"dev": "sst dev"
+	},
+	"dependencies": {
+		"sst": "3.3.29"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "8.10.146"
+	}
 }
