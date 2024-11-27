@@ -11,7 +11,7 @@ export default $config({
 	async run() {
 		const backend = new sst.aws.Function("Backend", {
 			url: true,
-			handler: "packages/backend/src/index.handler",
+			handler: "modules/backend/src/index.handler",
 		});
 	},
 });
