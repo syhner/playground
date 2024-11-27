@@ -19,5 +19,16 @@ export default $config({
 			handler: "modules/backend/src/index.handler",
 			link: [DatabaseUrl, BetterAuthSecret, GithubClientId, GithubClientSecret],
 		});
+
+		new sst.x.DevCommand("MobileApp", {
+			dev: {
+				autostart: true,
+				directory: "modules/mobile-app",
+				command: "pnpm start",
+			},
+			environment: {
+				EXPO_PUBLIC_API_URL: backend.url,
+			},
+		});
 	},
 });
