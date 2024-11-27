@@ -30,5 +30,14 @@ export default $config({
 				EXPO_PUBLIC_API_URL: backend.url,
 			},
 		});
+
+		new sst.x.DevCommand("Studio", {
+			dev: {
+				autostart: true,
+				directory: "modules/db",
+				command: "pnpm run studio",
+			},
+			link: [DatabaseUrl],
+		});
 	},
 });
