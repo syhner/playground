@@ -1,0 +1,22 @@
+{
+	"name": "db",
+	"type": "module",
+	"exports": {
+		".": "./src/db.ts",
+		"./schema": "./src/schema.ts"
+	},
+	"scripts": {
+		"generate": "npx drizzle-kit generate",
+		"migrate": "sst shell drizzle-kit migrate",
+		"push": "sst shell drizzle-kit push",
+		"studio": "sst shell drizzle-kit studio"
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "^0.10.4",
+		"dotenv": "^16.4.5",
+		"drizzle-orm": "^0.36.4"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.28.1"
+	}
+}

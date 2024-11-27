@@ -8,7 +8,9 @@
 		"dev": "tsx src/index.ts"
 	},
 	"dependencies": {
+		"auth": "workspace:*",
 		"core": "workspace:*",
+		"db": "workspace:*",
 		"hono": "^4.6.12"
 	}
 }

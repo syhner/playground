@@ -11,5 +11,21 @@ declare module "sst" {
       "type": "sst.aws.Function"
       "url": string
     }
+    "BetterAuthSecret": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "DatabaseUrl": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "GithubClientId": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "GithubClientSecret": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
   }
 }
