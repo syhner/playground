@@ -31,7 +31,7 @@ export default $config({
 			},
 		});
 
-		new sst.x.DevCommand("Studio", {
+		new sst.x.DevCommand("Db", {
 			dev: {
 				autostart: true,
 				directory: "modules/db",
