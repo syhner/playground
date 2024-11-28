@@ -7,7 +7,6 @@ export const auth = betterAuth({
 	database: drizzleAdapter(db, {
 		provider: "pg",
 	}),
-	secret: Resource.BetterAuthSecret.value,
 	socialProviders: {
 		github: {
 			clientId: Resource.GithubClientId.value,

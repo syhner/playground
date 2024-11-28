@@ -6,11 +6,14 @@ export default $config({
 			name: "saas-starter",
 			removal: input?.stage === "production" ? "retain" : "remove",
 			home: "aws",
+			providers: { random: "4.16.7" },
 		};
 	},
 	async run() {
 		const DatabaseUrl = new sst.Secret("DatabaseUrl");
-		const BetterAuthSecret = new sst.Secret("BetterAuthSecret");
+		const BetterAuthSecret = new random.RandomString("BetterAuthSecret", {
+			length: 32,
+		});
 		const GithubClientId = new sst.Secret("GithubClientId");
 		const GithubClientSecret = new sst.Secret("GithubClientSecret");
 
@@ -18,6 +21,9 @@ export default $config({
 			url: true,
 			handler: "modules/backend/src/index.handler",
 			link: [DatabaseUrl, BetterAuthSecret, GithubClientId, GithubClientSecret],
+			environment: {
+				BETTER_AUTH_SECRET: BetterAuthSecret.result,
+			},
 		});
 
 		new sst.x.DevCommand("MobileApp", {
