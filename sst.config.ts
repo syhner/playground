@@ -1,9 +1,6 @@
 /// <reference path="./.sst/platform/config.d.ts" />
-
 import { readdirSync } from "fs";
-
 const AWS_REGION = "eu-central-1";
-
 export default $config({
 	app(input) {
 		return {
