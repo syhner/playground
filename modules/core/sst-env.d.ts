@@ -11,9 +11,12 @@ declare module "sst" {
       "type": "sst.aws.Function"
       "url": string
     }
-    "DatabaseUrl": {
-      "type": "sst.sst.Secret"
-      "value": string
+    "DatabaseCredentials": {
+      "database": string
+      "host": string
+      "password": string
+      "type": "sst.sst.Linkable"
+      "username": string
     }
     "GithubClientId": {
       "type": "sst.sst.Secret"
