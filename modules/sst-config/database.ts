@@ -33,5 +33,6 @@ export const databaseCredentials = new sst.Linkable("DatabaseCredentials", {
 		password: neonRole.password,
 		host: neonEndpoint.host,
 		database: neonDatabase.name,
+		url: $interpolate`postgresql://${neonRole.name}:${neonRole.password}@${neonEndpoint.host}/${neonDatabase.name}?sslmode=require`,
 	},
 });

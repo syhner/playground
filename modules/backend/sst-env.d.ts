@@ -16,6 +16,7 @@ declare module "sst" {
       "host": string
       "password": string
       "type": "sst.sst.Linkable"
+      "url": string
       "username": string
     }
     "GithubClientId": {

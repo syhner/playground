@@ -6,6 +6,6 @@ export default defineConfig({
 	out: "./migrations",
 	dialect: "postgresql",
 	dbCredentials: {
-		url: `postgresql://${Resource.DatabaseCredentials.username}:${Resource.DatabaseCredentials.password}@${Resource.DatabaseCredentials.host}/${Resource.DatabaseCredentials.databaseCredentials}?sslmode=require`,
+		url: Resource.DatabaseCredentials.url,
 	},
 });
