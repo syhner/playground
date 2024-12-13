@@ -6,7 +6,7 @@
 		"format:write": "prettier --write ."
 	},
 	"dependencies": {
-		"sst": "3.3.29"
+		"sst": "3.4.1"
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "8.10.146",

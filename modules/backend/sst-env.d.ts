@@ -6,6 +6,10 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
+    "Auth": {
+      "type": "sst.aws.Auth"
+      "url": string
+    }
     "Backend": {
       "name": string
       "type": "sst.aws.Function"
@@ -26,6 +30,10 @@ declare module "sst" {
     "GithubClientSecret": {
       "type": "sst.sst.Secret"
       "value": string
+    }
+    "WebApp": {
+      "type": "sst.aws.Astro"
+      "url": string
     }
   }
 }

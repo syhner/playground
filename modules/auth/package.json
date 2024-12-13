@@ -1,0 +1,13 @@
+{
+	"name": "auth",
+	"type": "module",
+	"exports": {
+		".": "./src/subjects.ts"
+	},
+	"scripts": {},
+	"dependencies": {
+		"@openauthjs/openauth": "^0.1.1",
+		"hono": "^4.6.12",
+		"valibot": "1.0.0-beta.9"
+	}
+}
