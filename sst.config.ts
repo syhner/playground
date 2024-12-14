@@ -21,8 +21,8 @@ export default $config({
 	},
 	async run() {
 		const outputs = {};
-		for (const value of readdirSync("./modules/sst-config/")) {
-			const result = await import("./modules/sst-config/" + value);
+		for (const value of readdirSync("./modules/sst/")) {
+			const result = await import("./modules/sst/" + value);
 			if (result.outputs) Object.assign(outputs, result.outputs);
 		}
 		return outputs;
