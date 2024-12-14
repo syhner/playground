@@ -31,7 +31,7 @@ declare module "sst" {
       "type": "sst.sst.Secret"
       "value": string
     }
-    "WebApp": {
+    "Web": {
       "type": "sst.aws.Astro"
       "url": string
     }

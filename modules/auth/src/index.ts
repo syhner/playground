@@ -10,8 +10,8 @@ const app = authorizer({
 	subjects,
 	providers: {
 		github: GithubAdapter({
-			clientID: "Resource.GithubClientId.value",
-			clientSecret: "Resource.GithubClientSecret.value",
+			clientID: Resource.GithubClientId.value,
+			clientSecret: Resource.GithubClientSecret.value,
 			scopes: ["user:email"],
 		}),
 		password: PasswordAdapter(

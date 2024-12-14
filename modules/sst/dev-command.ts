@@ -1,14 +1,16 @@
+import { auth } from "./auth";
 import { backend } from "./backend";
 import { databaseCredentials } from "./database";
 
-new sst.x.DevCommand("MobileApp", {
+new sst.x.DevCommand("Mobile", {
 	dev: {
 		autostart: true,
-		directory: "modules/mobile-app",
+		directory: "modules/mobile",
 		command: "pnpm start",
 	},
 	environment: {
 		EXPO_PUBLIC_API_URL: backend.url,
+		AUTH_ISSUER: auth.url,
 	},
 });
 
