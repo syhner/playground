@@ -10,7 +10,7 @@ new sst.x.DevCommand("Mobile", {
 	},
 	environment: {
 		EXPO_PUBLIC_API_URL: backend.url,
-		AUTH_ISSUER: auth.url,
+		EXPO_PUBLIC_AUTH_ISSUER: auth.url,
 	},
 });
 

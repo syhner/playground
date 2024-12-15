@@ -13,7 +13,7 @@ import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 const AuthContext = createContext<{
 	signIn: () => void;
 	signOut: () => void;
-	session?: string | null;
+	session?: { email: string } | null;
 	isLoading: boolean;
 }>({
 	signIn: () => null,
@@ -26,8 +26,8 @@ WebBrowser.maybeCompleteAuthSession();
 
 // Endpoint
 const discovery = {
-	authorizationEndpoint: `${process.env.AUTH_ISSUER}/authorize`,
-	tokenEndpoint: `${process.env.AUTH_ISSUER}/token`,
+	authorizationEndpoint: `${process.env.EXPO_PUBLIC_AUTH_ISSUER}/authorize`,
+	tokenEndpoint: `${process.env.EXPO_PUBLIC_AUTH_ISSUER}/token`,
 };
 
 // This hook can be used to access the user info.
@@ -44,11 +44,11 @@ export function useSession() {
 
 // export const client = createClient({
 // 	clientID: "expo",
-// 	issuer: process.env.AUTH_ISSUER,
+// 	issuer: process.env.EXPO_PUBLIC_AUTH_ISSUER,
 // });
 
 export function SessionProvider({ children }: PropsWithChildren) {
-	const [session, setSession] = useState(null);
+	const [session, setSession] = useState<null | { email: string }>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [request, response, promptAsync] = useAuthRequest(
 		{
@@ -74,6 +74,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
 					// 	setSession(verified.subject);
 					// }
 				}
+				setSession({ email: "TODO@TODO.com" });
 				setIsLoading(false);
 			}
 		}
@@ -84,7 +85,6 @@ export function SessionProvider({ children }: PropsWithChildren) {
 		<AuthContext.Provider
 			value={{
 				signIn: () => {
-					// Perform sign-in logic here
 					setIsLoading(true);
 					promptAsync();
 				},
