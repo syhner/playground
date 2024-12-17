@@ -6,10 +6,6 @@
 # Install dependencies
 pnpm install
 
-# Create Neon api key - https://console.neon.tech/app/settings/api-keys
-# Set environment variables
-echo "NEON_API_KEY=<your-api-key>" >> .env
-
 # Create GitHub app - https://github.com/settings/apps
 # Set secrets
 sst secret set DatabaseUrl "<your-database-url>"
