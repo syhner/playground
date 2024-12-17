@@ -12,8 +12,9 @@ echo "NEON_API_KEY=<your-api-key>" >> .env
 
 # Create GitHub app - https://github.com/settings/apps
 # Set secrets
-sst secret set GITHUB_CLIENT_ID "<your-github-client-id>"
-sst secret set GITHUB_CLIENT_SECRET "<your-github-client-secret>"
+sst secret set DatabaseUrl "<your-database-url>"
+sst secret set GithubClientId "<your-github-client-id>"
+sst secret set GithubClientSecret "<your-github-client-secret>"
 
 # Run modules in dev mode
 sst dev

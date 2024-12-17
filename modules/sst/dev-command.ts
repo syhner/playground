@@ -1,6 +1,6 @@
 import { auth } from "./auth";
 import { backend } from "./backend";
-import { databaseCredentials } from "./database";
+import { databaseUrl } from "./secret";
 
 new sst.x.DevCommand("Mobile", {
 	dev: {
@@ -20,5 +20,5 @@ new sst.x.DevCommand("Db", {
 		directory: "modules/db",
 		command: "pnpm run studio",
 	},
-	link: [databaseCredentials],
+	link: [databaseUrl],
 });
