@@ -1,0 +1,139 @@
+name: stage-deploy
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      diff:
+        type: boolean
+        default: true
+      stage:
+        type: string
+        required: true
+      aws-region:
+        type: string
+        default: eu-west-2
+      aws-role:
+        type: string
+        default: arn:aws:iam::<aws-account-id>:role/devAccountAccessRole
+      aws-role-session:
+        type: string
+        default: dev
+    secrets:
+      AWS_REGION:
+        required: false
+      AWS_ROLE:
+        required: false
+  workflow_dispatch:
+    inputs:
+      diff:
+        type: boolean
+        default: true
+      stage:
+        type: string
+        required: true
+      aws-region:
+        type: string
+        default: eu-west-2
+      aws-role:
+        type: string
+        default: arn:aws:iam::<aws-account-id>:role/devAccountAccessRole
+      aws-role-session:
+        type: string
+        default: dev
+
+jobs:
+  ci-ts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/node
+
+      - name: Run TypeScript checks
+        run: pnpm run ts
+
+  ci-py:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/python
+
+      - name: Install dependencies
+        run: uv sync --all-packages --locked --all-extras --dev
+
+      - uses: ./.github/setup/node
+
+      - name: Run Python checks
+        run: pnpm run py
+
+  ci-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/go
+
+      - name: Install dependencies
+        run: go mod download
+
+      - uses: ./.github/setup/node
+
+      - name: Run Go checks
+        run: pnpm run go
+
+  diff:
+    if: ${{ inputs.diff }}
+    runs-on: ubuntu-latest
+    concurrency: sst-${{ inputs.stage }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/node
+
+      - uses: ./.github/setup/aws
+        with:
+          aws-region: ${{ secrets.AWS_REGION || inputs.aws-region }}
+          aws-role: ${{ secrets.AWS_ROLE || inputs.aws-role }}
+          aws-role-session: ${{ inputs.aws-role-session }}
+
+      - name: Diff
+        run: pnpm run sst diff --stage ${{ inputs.stage }}
+        # stage may not exist yet, which will cause the diff to fail
+        continue-on-error: true
+
+  deploy:
+    if: ${{ always() }}
+    needs: [ci-ts, ci-py, ci-go, diff]
+    runs-on: ubuntu-latest
+    concurrency: sst-${{ inputs.stage }}
+    environment: ${{ inputs.stage }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/aws
+        with:
+          aws-region: ${{ secrets.AWS_REGION || inputs.aws-region }}
+          aws-role: ${{ secrets.AWS_ROLE || inputs.aws-role }}
+          aws-role-session: ${{ inputs.aws-role-session }}
+
+      - uses: ./.github/setup/node
+
+      - uses: ./.github/setup/python
+
+      - uses: ./.github/setup/go
+
+      - name: Deploy
+        run: pnpm run sst deploy --stage ${{ inputs.stage }}
+
+      - name: Post-deploy typecheck (sst and openapi)
+        run: pnpm run ts:typecheck

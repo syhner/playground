@@ -1,0 +1,59 @@
+name: stage-remove
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      stage:
+        type: string
+        required: true
+      aws-region:
+        type: string
+        default: eu-west-2
+      aws-role:
+        type: string
+        default: arn:aws:iam::<aws-account-id>:role/devAccountAccessRole
+      aws-role-session:
+        type: string
+        default: dev
+    secrets:
+      AWS_REGION:
+        required: false
+      AWS_ROLE:
+        required: false
+  workflow_dispatch:
+    inputs:
+      stage:
+        type: string
+        required: true
+      aws-region:
+        type: string
+        default: eu-west-2
+      aws-role:
+        type: string
+        default: arn:aws:iam::<aws-account-id>:role/devAccountAccessRole
+      aws-role-session:
+        type: string
+        default: dev
+
+jobs:
+  remove:
+    runs-on: ubuntu-latest
+    concurrency: sst-${{ inputs.stage }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/setup/aws
+        with:
+          aws-region: ${{ secrets.AWS_REGION || inputs.aws-region }}
+          aws-role: ${{ secrets.AWS_ROLE || inputs.aws-role }}
+          aws-role-session: ${{ inputs.aws-role-session }}
+
+      - uses: ./.github/setup/node
+
+      - name: Remove
+        run: pnpm run sst remove --stage ${{ inputs.stage }}

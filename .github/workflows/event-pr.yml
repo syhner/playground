@@ -1,0 +1,23 @@
+name: event-pr
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+
+jobs:
+  deploy-pr:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    uses: ./.github/workflows/stage-deploy.yml
+    with:
+      stage: pr-${{ github.event.pull_request.number }}
+      diff: false
+
+  remove-pr:
+    if: ${{ github.event.action == 'closed' }}
+    uses: ./.github/workflows/stage-remove.yml
+    with:
+      stage: pr-${{ github.event.pull_request.number }}

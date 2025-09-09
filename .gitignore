@@ -1,0 +1,46 @@
+# sst
+.sst
+
+# env
+.env*.local
+.env
+!.env.example
+
+# temporary
+.cache
+.DS_Store
+.ignore
+.temp
+
+# distribution
+build
+dist
+
+# logs
+logs
+*.log
+
+# coverage
+.coverage
+.coverage.*
+.cache
+coverage.*
+*.cover
+*.py.cover
+cover
+report.*.json
+
+# node
+*.tsbuildinfo
+.npm
+node_modules
+
+# python
+__pycache__
+.dmypy.json
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.venv
+dmypy.json
+htmlcov

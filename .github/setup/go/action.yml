@@ -1,0 +1,11 @@
+name: Setup go
+description: Sets up go environment
+
+runs:
+  using: composite
+  steps:
+    - name: Setup go
+      uses: actions/setup-go@v5
+      with:
+        go-version-file: go.work
+        cache-dependency-path: go.work.sum
