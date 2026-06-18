@@ -19,12 +19,14 @@
       configuration = { pkgs, ... }: {
         networking.hostName = "smacbook";
         networking.computerName = "smacbook";
-        
+
         # Allow packages with unfree licenses.
         nixpkgs.config.allowUnfree = true;
 
         system.activationScripts.extraActivation.text = ''
-          softwareupdate --install-rosetta --agree-to-license
+          if ! pkgutil --pkg-info=com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
+            softwareupdate --install-rosetta --agree-to-license
+          fi
         '';
 
         # List packages installed in system profile. To search by name, run:
@@ -36,6 +38,8 @@
           pkgs.obsidian
           pkgs.nil
           pkgs.nixd
+          pkgs.zed-editor
+          pkgs.spotify
         ];
 
         fonts.packages = [
@@ -61,8 +65,39 @@
         };
 
         system.defaults = {
+          # 120, 90, 60, 30, 12, 6, 2
+          NSGlobalDomain.KeyRepeat = 2;
+          # 120, 94, 68, 35, 25, 15
+          NSGlobalDomain.InitialKeyRepeat = 15;
+
+          # # Allow Cmd+Tab app switcher to show apps across all displays
+          # dock.appswitcher-all-displays = true;
+
           dock.autohide = true;
+
+          # Instantly hide the Dock (no delay)
+          dock.autohide-delay = 0.0;
+
+          # Remove Dock auto-hide animation time
+          dock.autohide-time-modifier = 0.0;
+
+          # # Show only open apps in Dock (no persistent/static apps)
+          dock.static-only = true;
+
+          finder.NewWindowTarget = "Desktop";
+          finder.ShowPathbar = true;
+          finder._FXSortFoldersFirst = true;
+
+          # Allow quitting Finder with Cmd+Q
+          finder.QuitMenuItem = true;
+
+          # Prefer column view
           finder.FXPreferredViewStyle = "clmv";
+        };
+
+        system.keyboard = {
+          enableKeyMapping = true;
+          remapCapsLockToEscape = true;
         };
 
         # Necessary for using flakes on this system.
