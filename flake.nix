@@ -70,27 +70,18 @@
           # 120, 94, 68, 35, 25, 15
           NSGlobalDomain.InitialKeyRepeat = 15;
 
-          # # Allow Cmd+Tab app switcher to show apps across all displays
-          # dock.appswitcher-all-displays = true;
-
           dock.autohide = true;
-
-          # Instantly hide the Dock (no delay)
           dock.autohide-delay = 0.0;
-
           # Remove Dock auto-hide animation time
           dock.autohide-time-modifier = 0.0;
-
-          # # Show only open apps in Dock (no persistent/static apps)
+          # Show only open apps in Dock (no persistent/static apps)
           dock.static-only = true;
 
           finder.NewWindowTarget = "Desktop";
           finder.ShowPathbar = true;
           finder._FXSortFoldersFirst = true;
-
           # Allow quitting Finder with Cmd+Q
           finder.QuitMenuItem = true;
-
           # Prefer column view
           finder.FXPreferredViewStyle = "clmv";
         };
