@@ -17,54 +17,31 @@
     }:
     let
       configuration = { pkgs, ... }: {
+        # Necessary for using flakes on this system.
+        nix.settings.experimental-features = "nix-command flakes";
+
+        # Enable alternative shell support in nix-darwin.
+        # programs.fish.enable = true;
+
+        # Set Git commit hash for darwin-version.
+        system.configurationRevision = self.rev or self.dirtyRev or null;
+
+        # Used for backwards compatibility, please read the changelog before changing.
+        # $ darwin-rebuild changelog
+        system.stateVersion = 6;
+
+        # The platform the configuration will be used on.
+        nixpkgs.hostPlatform = "aarch64-darwin";
+
         networking.hostName = "smacbook";
         networking.computerName = "smacbook";
 
-        # Allow packages with unfree licenses.
-        nixpkgs.config.allowUnfree = true;
-
-        system.activationScripts.extraActivation.text = ''
-          if ! pkgutil --pkg-info=com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
-            softwareupdate --install-rosetta --agree-to-license
-          fi
-        '';
-
-        # List packages installed in system profile. To search by name, run:
-        # $ nix-env -qaP | grep wget
-        environment.systemPackages = [
-          pkgs.git
-          pkgs.neovim
-          pkgs.tmux
-          pkgs.obsidian
-          pkgs.nil
-          pkgs.nixd
-          pkgs.zed-editor
-          pkgs.spotify
-        ];
-
-        fonts.packages = [
-          pkgs.nerd-fonts.jetbrains-mono
-        ];
-
         system.primaryUser = "siraj";
 
-        homebrew = {
-          enable = true;
-          brews = [
-            "mas"
-            "mole"
-          ];
-          casks = [
-            "obs"
-            "vlc"
-            "ghostty"
-          ];
-          masApps = {
-            "Keynote" = 361285480;
-          };
-        };
-
         system.defaults = {
+          controlcenter.BatteryShowPercentage = true;
+
+          NSGlobalDomain.ApplePressAndHoldEnabled = false;
           # 120, 90, 60, 30, 12, 6, 2
           NSGlobalDomain.KeyRepeat = 2;
           # 120, 94, 68, 35, 25, 15
@@ -86,26 +63,58 @@
           finder.FXPreferredViewStyle = "clmv";
         };
 
-        system.keyboard = {
-          enableKeyMapping = true;
-          remapCapsLockToEscape = true;
+        # system.keyboard = {
+        #   enableKeyMapping = true;
+        #   remapCapsLockToEscape = true;
+        # };
+
+        # Allow packages with unfree licenses.
+        nixpkgs.config.allowUnfree = true;
+
+        system.activationScripts.extraActivation.text = ''
+          if ! pkgutil --pkg-info=com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
+            softwareupdate --install-rosetta --agree-to-license
+          fi
+        '';
+
+        # List packages installed in system profile. To search by name, run:
+        # $ nix-env -qaP | grep wget
+        environment.systemPackages = [
+          pkgs.git
+          pkgs.neovim
+          pkgs.tmux
+          pkgs.obsidian
+          pkgs.nil
+          pkgs.nixd
+          pkgs.zed-editor
+          pkgs.spotify
+          pkgs.discord
+        ];
+
+        fonts.packages = [
+          pkgs.nerd-fonts.jetbrains-mono
+        ];
+
+        homebrew = {
+          enable = true;
+          onActivation.cleanup = "zap";
+          brews = [
+            "mas"
+            "mole"
+          ];
+          casks = [
+            "obs"
+            "vlc"
+            "ghostty"
+            "stremio"
+            "monitorcontrol"
+            "helium-browser"
+            "steam"
+          ];
+          masApps = {
+            "Keynote" = 361285480;
+          };
         };
-
-        # Necessary for using flakes on this system.
-        nix.settings.experimental-features = "nix-command flakes";
-
-        # Enable alternative shell support in nix-darwin.
-        # programs.fish.enable = true;
-
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = self.rev or self.dirtyRev or null;
-
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
-        system.stateVersion = 6;
-
-        # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
       };
     in
     {
