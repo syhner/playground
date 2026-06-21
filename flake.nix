@@ -41,6 +41,7 @@
         system.defaults = {
           controlcenter.BatteryShowPercentage = true;
 
+          # Press and hold key for accents behaviour
           NSGlobalDomain.ApplePressAndHoldEnabled = false;
           # 120, 90, 60, 30, 12, 6, 2
           NSGlobalDomain.KeyRepeat = 2;
@@ -61,7 +62,13 @@
           finder.QuitMenuItem = true;
           # Prefer column view
           finder.FXPreferredViewStyle = "clmv";
+
+          # Scroll with ctrl
+          universalaccess.closeViewScrollWheelToggle = true;
         };
+
+        # sudo with Touch ID
+        security.pam.services.sudo_local.touchIdAuth = true;
 
         # system.keyboard = {
         #   enableKeyMapping = true;
@@ -91,7 +98,7 @@
           # Karabiner-VirtualHIDDevice driver for kanata
           pkgs.karabiner-dk
           pkgs.kanata
-          pkgs.discord
+          pkgs.proton-vpn
         ];
 
         fonts.packages = [
@@ -113,6 +120,8 @@
             "monitorcontrol"
             "helium-browser"
             "steam"
+            # gets stuck on installing helper tool when installed through nixpkgs
+            "discord"
           ];
           masApps = {
             "Keynote" = 361285480;
