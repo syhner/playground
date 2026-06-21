@@ -52,6 +52,14 @@
               # Automatically migrate existing Homebrew installations
               autoMigrate = true;
             };
+
+            nixpkgs.overlays = [
+              (final: prev: {
+                kanata = prev.kanata.overrideAttrs (old: {
+                  cargoBuildFeatures = (old.cargoBuildFeatures or [ ]) ++ [ "cmd" ];
+                });
+              })
+            ];
           }
         ];
       };
