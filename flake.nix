@@ -30,7 +30,7 @@
           ./modules/common.nix
           ./modules/darwin.nix
           ./modules/homebrew.nix
-          ./modules/launchd.nix
+          ./modules/kanata.nix
           ./modules/packages.nix
           nix-homebrew.darwinModules.nix-homebrew
           {
