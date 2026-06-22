@@ -17,8 +17,9 @@
       "monitorcontrol"
       "helium-browser"
       "steam"
-      # gets stuck on installing helper tool when installed through nixpkgs
+      # when installed through nixpkgs, gets stuck on installing helper too
       "discord"
+      "lookaway"
     ];
     masApps = {
       "Keynote" = 361285480;

@@ -14,10 +14,12 @@
 
     # Press and hold key for accents behaviour
     NSGlobalDomain.ApplePressAndHoldEnabled = false;
-    # 120, 90, 60, 30, 12, 6, 2
-    NSGlobalDomain.KeyRepeat = 2;
     # 120, 94, 68, 35, 25, 15
     NSGlobalDomain.InitialKeyRepeat = 15;
+    # 120, 90, 60, 30, 12, 6, 2
+    NSGlobalDomain.KeyRepeat = 2;
+    NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+    NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
     dock.autohide = true;
     dock.autohide-delay = 0.0;
@@ -26,7 +28,7 @@
     # Show only open apps in Dock (no persistent/static apps)
     dock.static-only = true;
 
-    finder.NewWindowTarget = "Desktop"; 
+    finder.NewWindowTarget = "Desktop";
     finder.ShowPathbar = true;
     finder._FXSortFoldersFirst = true;
     # Allow quitting Finder with Cmd+Q

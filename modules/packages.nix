@@ -7,6 +7,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     pkgs.git
+    pkgs.stow
     pkgs.neovim
     pkgs.tmux
     pkgs.obsidian
