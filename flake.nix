@@ -2,7 +2,7 @@
   description = "test";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   };
 
   outputs =
@@ -33,9 +33,7 @@
 
       packages.${system} = {
         # nix run .#script1
-        script1 = pkgs.writeShellScriptBin "script1" ''
-          echo "hello from script1" | ${pkgs.cowsay}/bin/cowsay | ${pkgs.lolcat}/bin/lolcat
-        '';
+        script1 = pkgs.writers.writeBashBin "script1" (builtins.readFile ./script.sh);
 
         # nix run .#script2
         script2 = pkgs.writeShellScriptBin "script2" ''
