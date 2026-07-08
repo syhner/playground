@@ -3,5 +3,8 @@
 }:
 
 pkgs.mkShell {
-  # stuff goes here
+  shellHook = ''
+    echo "Welcome"
+    echo "to my shell!" | ${pkgs.lolcat}/bin/lolcat
+  '';
 }
