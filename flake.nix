@@ -3,10 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    # # equivalent to
+    # nixpkgs = {
+    #   type = "github";
+    #   owner = "NixOS";
+    #   repo = "nixpkgs";
+    #   ref = "nixos-26.05";
+    # };
   };
 
   outputs =
     {
+      # `self` is this flake's own outputs
       self,
       nixpkgs,
       ...
@@ -17,7 +25,7 @@
     in
     {
       # -------------------------------
-      # nix build
+      # nix build = nix build . = nix build .#default
       # -------------------------------
       packages.${system}.default = pkgs.stdenv.mkDerivation {
         name = "name2";
