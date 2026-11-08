@@ -1,0 +1,25 @@
+font-family = Berkeley Mono Variable
+window-title-font-family = Berkeley Mono Variable
+font-thicken = true
+font-size = 16
+
+theme = tokyonight
+cursor-style = block
+
+keybind = global:cmd+§=toggle_quick_terminal
+quick-terminal-animation-duration = 0
+
+keybind = cmd+backspace=text:\x15
+keybind = cmd+delete=text:\x0b
+keybind = opt+delete=esc:d
+
+confirm-close-surface = false
+macos-titlebar-style = tabs
+mouse-hide-while-typing = true
+window-colorspace = display-p3
+# window-decoration=none
+
+# custom-shader = crt.glsl
+# custom-shader = bloom.glsl
+
+macos-option-as-alt = true

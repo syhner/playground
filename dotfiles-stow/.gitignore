@@ -1,0 +1,6 @@
+backups/
+.DS_Store
+node_modules/
+
+encrypted/*
+!encrypted/*.gpg

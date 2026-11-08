@@ -1,0 +1,5 @@
+{
+  "linux": "~/.config/nvim-backup",
+  "mac": "~/.config/nvim-backup",
+  "windows": "~/AppData/Local/nvim-backup"
+}
