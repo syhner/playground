@@ -1,0 +1,17 @@
+{
+  "name": "sst-init",
+  "version": "0.0.0",
+  "workspaces": [
+    "modules/*"
+  ],
+  "scripts": {
+    "dev": "sst dev"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "sst": "^3"
+  }
+}

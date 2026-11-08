@@ -1,0 +1,17 @@
+{
+  "name": "@sst-init/core",
+  "type": "module",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "sst shell vitest"
+  },
+  "dependencies": {
+    "sst": "*"
+  },
+  "devDependencies": {
+    "vitest": "^2"
+  }
+}

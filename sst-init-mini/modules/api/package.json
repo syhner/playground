@@ -1,0 +1,13 @@
+{
+  "name": "@sst-init/api",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sst-init/core": "*",
+    "hono": "^4",
+    "sst": "*"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8"
+  }
+}
