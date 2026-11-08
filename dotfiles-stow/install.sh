@@ -4,7 +4,7 @@
 set -euo pipefail # strict mode
 
 export DOTFILES
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && git rev-parse --show-toplevel)/dotfiles"
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && git rev-parse --show-toplevel)/dotfiles-stow"
 
 . "$DOTFILES/scripts/add-git-hooks.sh"
 . "$DOTFILES/scripts/package-manager.sh"

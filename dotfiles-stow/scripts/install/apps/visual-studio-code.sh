@@ -2,7 +2,7 @@
 set -euo pipefail # strict mode
 
 export DOTFILES
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && git rev-parse --show-toplevel)/dotfiles"
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && git rev-parse --show-toplevel)/dotfiles-stow"
 source "$DOTFILES/home/shell/source/0-functions.sh"
 
 package_name="visual-studio-code"
