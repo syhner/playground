@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "weather-example": {
+      "type": "stdio",
+      "command": "bun",
+      "args": ["tsx", "src/mcp/mcp-server.ts"],
+      "env": {}
+    }
+  }
+}
