@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.0",
+  "info": { "version": "1.0.0", "title": "API" },
+  "components": { "schemas": {}, "parameters": {} },
+  "paths": {
+    "/echo": {
+      "get": {
+        "parameters": [
+          {
+            "schema": { "type": "string", "nullable": true },
+            "required": false,
+            "name": "input",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Echo the number",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  }
+}

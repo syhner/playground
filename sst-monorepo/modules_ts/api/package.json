@@ -1,0 +1,23 @@
+{
+  "name": "@abtrace/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/types.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@abtrace/core": "workspace:*",
+    "@hono/swagger-ui": "^0.5.2",
+    "@hono/zod-openapi": "^1.1.0",
+    "hono": "^4.9.4",
+    "zod": "^4.1.3"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,25 @@
+name: Setup AWS
+description: Sets up AWS credentials
+
+inputs:
+  aws-region:
+    required: true
+    description: AWS region to use
+  aws-role:
+    required: true
+    description: AWS role ARN to assume
+  aws-role-session:
+    required: true
+    description: AWS role session name
+
+runs:
+  using: composite
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.aws-role }}
+        role-session-name: ${{ inputs.aws-role-session }}
+        role-duration-seconds: 3600
+        role-skip-session-tagging: true

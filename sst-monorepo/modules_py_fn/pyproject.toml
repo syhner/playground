@@ -1,0 +1,13 @@
+[project]
+name = "modules_py_fn"
+version = "0.1.0"
+requires-python = "==3.12.*"
+dependencies = ["modules_py_core", "sst"]
+
+[build-system]
+requires = ["uv_build>=0.8.12,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+modules_py_core = { workspace = true }
+sst = { git = "https://github.com/sst/sst.git", branch = "dev", subdirectory = "sdk/python" }

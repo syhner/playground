@@ -1,0 +1,23 @@
+name: event-release
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  deploy-staging:
+    uses: ./.github/workflows/stage-deploy.yml
+    with:
+      stage: staging
+
+  deploy-prod:
+    needs: deploy-staging
+    uses: ./.github/workflows/stage-deploy.yml
+    secrets: inherit
+    with:
+      stage: prod
+      aws-role-session: ${{ github.run_id }}

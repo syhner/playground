@@ -1,0 +1,35 @@
+{
+  "name": "cdss",
+  "workspaces": [
+    "modules_ts/*"
+  ],
+  "scripts": {
+    "sst": "sst",
+    "dev": "cross-env-shell \"sst dev --stage user-$USER$USERNAME-dev\"",
+    "deploy": "cross-env-shell \"sst deploy --stage user-$USER$USERNAME-deploy\"",
+    "check": "pnpm run \"/^(ts|py|go)$/\"",
+    "ts": "pnpm run \"/^ts:.*/\"",
+    "ts:build": "pnpm --recursive run build",
+    "ts:lint": "pnpm --recursive run lint",
+    "ts:test": "pnpm --recursive run test",
+    "ts:typecheck": "pnpm --recursive run typecheck",
+    "py": "pnpm run \"/^py:.*/\"",
+    "py:typecheck": "uv run mypy",
+    "py:test": "uv run pytest",
+    "py:lint": "uv run ruff check",
+    "go": "pnpm run \"/^go:.*/\"",
+    "go:typecheck": "go vet work",
+    "go:test": "go test work"
+  },
+  "dependencies": {
+    "sst": "^3.17.10"
+  },
+  "devDependencies": {
+    "@pulumi/pulumi": "^3.191.0",
+    "@types/aws-lambda": "8.10.152",
+    "cross-env": "^10.0.0",
+    "openapi-typescript": "^7.9.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  }
+}
