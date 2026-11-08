@@ -1,0 +1,15 @@
+{
+	"name": "backend",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"dev": "tsx src/index.ts"
+	},
+	"dependencies": {
+		"core": "workspace:*",
+		"db": "workspace:*",
+		"hono": "^4.6.12"
+	}
+}

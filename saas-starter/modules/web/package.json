@@ -1,0 +1,16 @@
+{
+	"name": "web",
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"astro": "astro",
+		"build": "astro build",
+		"dev": "astro dev",
+		"preview": "astro preview"
+	},
+	"dependencies": {
+		"@openauthjs/openauth": "^0.1.1",
+		"astro": "^5.0.5",
+		"auth": "workspace:*"
+	}
+}

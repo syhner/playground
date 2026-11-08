@@ -1,0 +1,9 @@
+{
+	"name": "core",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {},
+	"dependencies": {}
+}
